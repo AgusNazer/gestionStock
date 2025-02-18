@@ -1,0 +1,40 @@
+package com.gestionstock.demo.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "USUARIO")
+public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+    private String apellido;
+    private String email;
+    private Integer edad;
+
+    @Column(unique = true, nullable = false, length = 10)
+    private long dni;
+
+    private Boolean esAdmin;
+
+    // un usuario puede registrar varios movimientos de stock
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MovimientoStock> movimientos = new ArrayList<>();
+
+    // un usuario puede tener varios roles
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "USUARIO_ROL",
+        joinColumns = @JoinColumn(name = "USUARIO_ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROL_ID")
+    )
+    private List<Rol> roles = new ArrayList<>();
+}

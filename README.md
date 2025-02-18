@@ -1,0 +1,3 @@
+Aplicacion web con java y spring, para la gestion de stock de productos, donde se podra controlar el ingreso y egreso de mercaderia,levar un control, 
+y donde tambien haya roles como amdmins y usuarios como vendedores y/o compradores. Todavia no tengo definido exactamente que productos, 
+pero la estructura general del projecto puede adaptarse a distintos rubros ya que todavia no he avanzado en detalles.

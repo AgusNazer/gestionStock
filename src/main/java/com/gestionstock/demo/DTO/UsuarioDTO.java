@@ -6,8 +6,12 @@ package com.gestionstock.demo.DTO;
 
 public class UsuarioDTO {
     private Long id;
+
     private String nombre;
+    private String apellido;
     private String email;
+    private Integer edad;
+    private Boolean esAdmin;
     private String rol; //admin, empleado, proveedor
 }
 

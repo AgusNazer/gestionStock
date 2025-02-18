@@ -1,0 +1,7 @@
+IMPORTANTE
+los DTOs no tienen logica, solo son objetos especificos con atributos.
+utilizarlos para transferir multiples datos en un solo llamado.
+simplificar el uso del modelo a los clientes.
+pasar datos entre capas.
+
+no enviar mas datos de los necesarios.
