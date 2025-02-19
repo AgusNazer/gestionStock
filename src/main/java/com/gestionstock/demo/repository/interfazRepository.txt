@@ -1,0 +1,11 @@
+Una interfaz de repositorio en Spring Boot extiende JpaRepository o CrudRepository, 
+lo que permite acceder a la base de datos sin necesidad de escribir implementaciones manuales.
+
+Spring Data JPA se encarga de generar automáticamente la implementación de estas interfaces en tiempo de ejecución.
+
+Beneficios de usar una interfaz de repositorio
+✅ No necesitas escribir código SQL para operaciones básicas.
+✅ Spring genera la implementación automáticamente.
+✅ Puedes definir consultas personalizadas con @Query.
+✅ Usa nombres de métodos descriptivos para consultas (findByNombre, findByMovimientoStock).
+
