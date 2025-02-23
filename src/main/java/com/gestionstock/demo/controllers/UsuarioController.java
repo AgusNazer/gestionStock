@@ -2,7 +2,7 @@ package com.gestionstock.demo.controllers;
 
 import com.gestionstock.demo.model.Usuario;
 import com.gestionstock.demo.service.UsuarioServicio;
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class UsuarioController {
 
     private final UsuarioServicio usuarioServicio;
 
-    @Autowired
+    // @Autowired
     public UsuarioController(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
     }
