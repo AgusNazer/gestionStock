@@ -29,7 +29,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MovimientoStock> movimientos = new ArrayList<>();
 
-    // un usuario puede tener varios roles
+    // cada usuario puede tener varios roles / un rol puede ser asignado a varios usuarios
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "USUARIO_ROL",

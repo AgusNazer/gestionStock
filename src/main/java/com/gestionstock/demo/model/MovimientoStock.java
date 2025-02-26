@@ -12,11 +12,19 @@ public class MovimientoStock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tipoMovimiento; //entrada o salida
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoMovimiento tipoMovimiento; // declarar esta variable en la clase
+
+    @Column(nullable = false)
     private Integer cantidad;
 
     @ManyToOne
-    @JoinColumn(name = "USUARIO_ID")
+    @JoinColumn(name = "USUARIO_ID", nullable = false)
     private Usuario usuario;
 
+    // Enum para definir el tipo de movimiento
+    public enum TipoMovimiento {
+        ENTRADA, SALIDA
+    }
 }

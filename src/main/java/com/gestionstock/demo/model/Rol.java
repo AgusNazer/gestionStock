@@ -1,5 +1,7 @@
 package com.gestionstock.demo.model;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,4 +15,7 @@ public class Rol {
     private Long id;
 
     private String nombre; // admin, comprador, vendedor
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<Usuario> usuarios;
 }
