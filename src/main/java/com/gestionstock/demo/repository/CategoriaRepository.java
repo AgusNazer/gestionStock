@@ -1,5 +1,12 @@
 package com.gestionstock.demo.repository;
 
-public class CategoriaRepository {
-//implementar logica para categoria.
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.gestionstock.demo.model.Categoria;
+
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+    // No es necesario crear un método adicional para guardar, puedes usar save()
+    // Métodos personalizados pueden agregarse si es necesario
 }
