@@ -8,5 +8,5 @@ public class ProductoDTO {
     private Double precio;
     private Integer stock;
     private Long categoriaId; // relacionarlo con CategoriaDTO
-
+    // private String categoriaNombre;
 }

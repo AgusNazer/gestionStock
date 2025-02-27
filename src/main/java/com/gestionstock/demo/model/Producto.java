@@ -19,6 +19,7 @@ public class Producto {
     private Double precio;
 
     private Integer stock;
+    
 
     @ManyToOne
     @JoinColumn(name = "CATEGORIA_ID", nullable = false)

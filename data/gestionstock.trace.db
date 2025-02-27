@@ -393,3 +393,11 @@ Wrong user name or password [28000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 50 more
+2025-02-27 12:18:33.948240-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PRODUCTOS" no encontrada
+Table "PRODUCTOS" not found; SQL statement:
+SELECT * FROM productos [42102-232]
+2025-02-27 12:18:39.409902-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PRODUCTOS" no encontrada
+Table "PRODUCTOS" not found; SQL statement:
+SELECT * FROM PRODUCTOS [42102-232]
