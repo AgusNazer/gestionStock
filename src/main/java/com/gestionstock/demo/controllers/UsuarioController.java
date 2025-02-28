@@ -46,6 +46,19 @@ public class UsuarioController {
         usuarioServicio.save(usuario);
         return new ResponseEntity<>("Usuario creado correctamente", HttpStatus.CREATED);  // Responde con mensaje y código de estado 201
     }
+@PutMapping("/{id}")
+public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+    // Verifica si el ID recibido en la URL coincide con el ID del objeto usuario
+    if (!id.equals(usuario.getId())) {
+        return ResponseEntity.badRequest().build(); // Error de solicitud, IDs no coinciden
+    }
+
+    // Llama al servicio para actualizar el usuario
+    Usuario usuarioActualizado = usuarioServicio.save(usuario);
+
+    return ResponseEntity.ok(usuarioActualizado); // Respuesta exitosa con el usuario actualizado
+}
+
 
     @DeleteMapping("/{id}")
     public void deleteUsuario(@PathVariable Long id) {

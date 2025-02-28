@@ -39,9 +39,10 @@ public class UsuarioServicioImp implements UsuarioServicio {
     }
 
     @Override
-    public void save(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Usuario save(Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
+    
 
     @Override
     public void delete(Long id) {

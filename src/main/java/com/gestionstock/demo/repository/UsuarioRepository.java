@@ -19,7 +19,9 @@ import com.gestionstock.demo.model.Usuario;
     Optional<Usuario> findByEmail(String email);
 
     // Verificar si un usuario con un DNI específico existe
-    boolean existsByDni(Long dni); 
+    boolean existsByDni(Long dni);
+
+    // Optional<Usuario> updateUsuario(Long id, Usuario usuario);
 
     //Spring Data JPA generará automáticamente la implementación de estos métodos basándose en el nombre.
 

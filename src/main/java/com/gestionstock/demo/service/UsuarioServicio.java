@@ -15,7 +15,7 @@ public interface UsuarioServicio {
 
     List<Usuario> findAll();
 
-    void save(Usuario usuario);
+    Usuario save(Usuario usuario);
 
     void delete(Long id);
 }
