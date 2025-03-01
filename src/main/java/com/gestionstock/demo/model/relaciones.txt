@@ -1,0 +1,35 @@
+Usuario y MovimientoStock → Uno a Muchos (@OneToMany)
+
+Un usuario puede registrar muchos movimientos de stock.
+En la base de datos, esto se traduce en que la tabla MOVIMIENTO_STOCK tiene una clave foránea (USUARIO_ID) que apunta a USUARIO.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Usuario y Rol → Muchos a Muchos (@ManyToMany)
+
+Un usuario puede tener varios roles (por ejemplo, "Admin", "Vendedor").
+Un rol puede ser asignado a varios usuarios.
+En la base de datos, se crea una tabla intermedia USUARIO_ROL con las columnas USUARIO_ID y ROL_ID.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Categoría y Producto → Uno a Muchos (@OneToMany)
+
+Una categoría puede contener muchos productos.
+En la base de datos, PRODUCTO tiene una clave foránea (CATEGORIA_ID) que referencia a CATEGORIA.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Producto y Categoría → Muchos a Uno (@ManyToOne)
+
+Un producto pertenece a una sola categoría.
+PRODUCTO tiene una columna CATEGORIA_ID que actúa como clave foránea.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+TABLA INTERMEDIA ENTRE USUARIO Y ROL
+
+Un Usuario puede tener varios roles (por ejemplo, "Admin", "Vendedor").
+Un Rol puede ser asignado a varios usuarios.
+En bases de datos relacionales, las relaciones Muchos a Muchos no pueden representarse directamente con solo dos tablas.
+Para resolverlo, se crea una tabla intermedia que conecta los IDs de ambas tablas
