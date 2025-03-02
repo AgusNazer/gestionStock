@@ -1,0 +1,7 @@
+diagrama del flujo de funcionamiento de la aplicación con las capas Controlador → Servicio → Repositorio → Base de Datos:
+
+1️⃣ El usuario envía una solicitud HTTP (GET, POST, PUT, DELETE) a la API.
+2️⃣ El Controller recibe la petición y la envía al Service.
+3️⃣ El Service maneja la lógica de negocio y llama al Repository.
+4️⃣ El Repository accede a la base de datos usando Spring Data JPA.
+5️⃣ La base de datos devuelve la información y el flujo vuelve en sentido contrario hasta el usuario.
