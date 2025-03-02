@@ -5,3 +5,4 @@ simplificar el uso del modelo a los clientes.
 pasar datos entre capas.
 
 no enviar mas datos de los necesarios.
+

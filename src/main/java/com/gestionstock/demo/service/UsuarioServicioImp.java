@@ -42,6 +42,12 @@ public class UsuarioServicioImp implements UsuarioServicio {
     public Usuario save(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
+    //para multilpes usuarios
+    @Override
+    public List<Usuario> saveAll(List<Usuario> usuarios) {
+    return usuarioRepository.saveAll(usuarios);
+}
+
     
 
     @Override

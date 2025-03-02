@@ -41,11 +41,18 @@ public class UsuarioController {
         return usuarioServicio.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<String> createUsuario(@RequestBody Usuario usuario) {
-        usuarioServicio.save(usuario);
-        return new ResponseEntity<>("Usuario creado correctamente", HttpStatus.CREATED);  // Responde con mensaje y código de estado 201
-    }
+    // @PostMapping
+    // public ResponseEntity<String> createUsuario(@RequestBody Usuario usuario) {
+    //     usuarioServicio.save(usuario);
+    //     return new ResponseEntity<>("Usuario creado correctamente", HttpStatus.CREATED);  // Responde con mensaje y código de estado 201
+    // }
+
+    // ruta para crear multiples usuarios a la vez en postman, solo de prueba, borrarlo despues
+    @PostMapping("/multiples")
+public ResponseEntity<List<Usuario>> createUsuarios(@RequestBody List<Usuario> usuarios) {
+    List<Usuario> savedUsuarios = usuarioServicio.saveAll(usuarios);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuarios);
+}
 @PutMapping("/{id}")
 public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
     // Verifica si el ID recibido en la URL coincide con el ID del objeto usuario

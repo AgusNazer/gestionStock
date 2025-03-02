@@ -18,6 +18,10 @@ public interface UsuarioServicio {
     Usuario save(Usuario usuario);
 
     void delete(Long id);
+
+    // metodo para crear multiples usuairos en postman para pruebas
+    List<Usuario> saveAll(List<Usuario> usuarios);
+
 }
 // Esta interfaz define los métodos que voy a implementar en la capa de servicio.
 
