@@ -26,38 +26,46 @@ public class DemoApplication implements CommandLineRunner{
 	}
 
 	@Override
-    public void run(String... args) throws Exception {
-        // Crear las categorias
+public void run(String... args) throws Exception {
+    // Verificar si ya existen categorías antes de crearlas
+    if (categoriaService.obtenerPorNombre("Electrónica").isEmpty()) {
         Categoria categoria1 = new Categoria();
         categoria1.setNombre("Electrónica");
+        categoriaService.guardarCategoria(categoria1);
+    }
 
+    if (categoriaService.obtenerPorNombre("Hogar").isEmpty()) {
         Categoria categoria2 = new Categoria();
         categoria2.setNombre("Hogar");
-
-        // Guardar las categorias en la base de datos
-        categoriaService.guardarCategoria(categoria1);
         categoriaService.guardarCategoria(categoria2);
+    }
 
-        // Crear productos
+    // Obtener categorías para asignarlas a productos
+    Categoria categoriaElectronica = categoriaService.obtenerPorNombre("Electrónica").orElseThrow();
+    Categoria categoriaHogar = categoriaService.obtenerPorNombre("Hogar").orElseThrow();
+
+    // Verificar si los productos ya existen antes de crearlos
+    if (!productoService.existePorNombre("Laptop")) {
         Producto producto1 = new Producto();
         producto1.setNombre("Laptop");
         producto1.setDescripcion("Laptop Gamer");
         producto1.setPrecio(1500.0);
         producto1.setStock(10);
-        producto1.setCategoria(categoria1);
+        producto1.setCategoria(categoriaElectronica);
+        productoService.guardarProducto(producto1);
+    }
 
+    if (!productoService.existePorNombre("Silla de Oficina")) {
         Producto producto2 = new Producto();
         producto2.setNombre("Silla de Oficina");
         producto2.setDescripcion("Silla ergonómica");
         producto2.setPrecio(200.0);
         producto2.setStock(20);
-        producto2.setCategoria(categoria2);
-
-        // Guardar productos en la base de datos
-        productoService.guardarProducto(producto1);
+        producto2.setCategoria(categoriaHogar);
         productoService.guardarProducto(producto2);
-
-        System.out.println("Datos inicializados correctamente.");
     }
+
+    System.out.println("Datos inicializados correctamente.");
+}
 
 }

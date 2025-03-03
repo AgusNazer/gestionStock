@@ -11,6 +11,8 @@ import java.util.Optional;
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+    
+    
 
     public CategoriaService(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
@@ -25,10 +27,14 @@ public class CategoriaService {
     public Optional<Categoria> obtenerPorId(Long id) {
         return categoriaRepository.findById(id);
     }
-
-    // Guardar una nueva categoría
+        // Obtener una categoría por nombre
+        public Optional<Categoria> obtenerPorNombre(String nombre) {
+            return categoriaRepository.findByNombre(nombre);
+        }
+            // Guardar una nueva categoría solo si no existe
     public Categoria guardarCategoria(Categoria categoria) {
-        return categoriaRepository.save(categoria);
+        Optional<Categoria> categoriaExistente = categoriaRepository.findByNombre(categoria.getNombre());
+        return categoriaExistente.orElseGet(() -> categoriaRepository.save(categoria));
     }
 
     // Actualizar una categoría

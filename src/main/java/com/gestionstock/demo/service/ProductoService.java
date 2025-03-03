@@ -45,9 +45,8 @@ public class ProductoService {
                 .orElseGet(() -> {
                     Categoria nuevaCategoria = new Categoria();
                     nuevaCategoria.setNombre(nombreCategoria);
-                    return categoriaRepository.save(nuevaCategoria); // rear la categoria si no existe
+                    return categoriaRepository.save(nuevaCategoria);
                 });
-    
         } else {
             // Verificar si el ID existe en la base de datos
             categoria = categoriaRepository.findById(categoria.getId())
@@ -55,10 +54,15 @@ public class ProductoService {
         }
     
         producto.setCategoria(categoria);
+    
+        // Verificar si el producto ya existe por nombre y categoría antes de guardarlo
+        Optional<Producto> productoExistente = productoRepository.findByNombreAndCategoria(producto.getNombre(), categoria);
+        if (productoExistente.isPresent()) {
+            return productoExistente.get(); // Retornar el producto existente en lugar de crear uno nuevo
+        }
+    
         return productoRepository.save(producto);
     }
-    
-    
     
 
 
@@ -84,4 +88,11 @@ public class ProductoService {
     public List<Producto> obtenerPorCategoria(Long categoriaId) {
         return productoRepository.findByCategoriaId(categoriaId);
     }
+
+    public boolean existePorNombre(String nombre) {
+        Optional<Producto> productoExistente = productoRepository.findByNombre(nombre);
+        return productoExistente.isPresent();
+    }
+    
+
 }

@@ -5,3 +5,9 @@ diagrama del flujo de funcionamiento de la aplicación con las capas Controlador
 3️⃣ El Service maneja la lógica de negocio y llama al Repository.
 4️⃣ El Repository accede a la base de datos usando Spring Data JPA.
 5️⃣ La base de datos devuelve la información y el flujo vuelve en sentido contrario hasta el usuario.
+
+Diferencias entre método, función y variable en Java
+Concepto	Definición
+Método	Un conjunto de instrucciones que realiza una tarea específica dentro de una clase en Java.
+Función	Java no tiene funciones como en otros lenguajes (como Python o JavaScript). En Java, todas las funciones deben estar dentro de una clase y se llaman métodos.
+Variable	Un espacio de memoria que almacena un valor, como String nombre = "Hola";.
