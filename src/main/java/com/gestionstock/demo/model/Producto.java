@@ -1,5 +1,7 @@
 package com.gestionstock.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +22,7 @@ public class Producto {
 
     private Integer stock;
     
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "CATEGORIA_ID", nullable = false)
     private Categoria categoria; // Relación con la clase Categoria

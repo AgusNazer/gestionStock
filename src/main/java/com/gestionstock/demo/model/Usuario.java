@@ -3,6 +3,8 @@ package com.gestionstock.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,6 +26,7 @@ public class Usuario {
     private long dni;
 
     private Boolean esAdmin;
+    @JsonManagedReference
 
     // un usuario puede registrar varios movimientos de stock
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
