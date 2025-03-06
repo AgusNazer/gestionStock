@@ -1,39 +1,69 @@
-Aplicacion web con java y spring, para la gestion de stock de productos, donde se podra controlar el ingreso y egreso de mercaderia,levar un control, 
-y donde tambien haya roles como amdmins y usuarios como vendedores y/o compradores. Todavia no tengo definido exactamente que productos, 
-pero la estructura general del projecto puede adaptarse a distintos rubros ya que todavia no he avanzado en detalles.
+# Aplicación de Gestión de Stock
 
-#Endpoints funcionandoen localhost:8080
-#/usuarios
-get
-traer todos los usuarios: /usuarios
-buscar usuario por Id: /{id}
-buscar usuario por dni: dni/{dni}
-buscar usuario por email: email/{email}
-buscar usuario por dni: dni/{dni}
-post
-crear varios usuarios: /multiples
-put
-modificar usuario: /{id}
-delete
-elminar usuario: /{id}
+Aplicación web desarrollada con **Java** y **Spring** para la gestión de stock de productos.  
+Permite controlar el **ingreso y egreso de mercadería**, llevar un registro detallado y administrar usuarios con diferentes **roles**:  
+- **Administradores**  
+- **Vendedores**  
+- **Compradores**  
 
-#/productos
-get
-traer productos: /productos
-post
-crear productos: /productos
-put
-modificar productos: /{id}
-delete
-eliminar productos: /{id}
+La estructura es adaptable a distintos rubros, ya que aún no se ha definido un tipo específico de producto.  
 
-#/categorias
-get
-traer categorias: /categorias
-traer por id: /{id}
-post
-crear categoria: /categoria
-put
-modificar categoria: /{id}
-delete
-eliminar categoria: /{id}
+## 🚀 Endpoints Disponibles  
+
+### 🔹 Usuarios  
+
+📌 **GET** - Traer todos los usuarios:  
+`/usuarios`  
+
+📌 **GET** - Buscar usuario por ID:  
+`/usuarios/{id}`  
+
+📌 **GET** - Buscar usuario por DNI:  
+`/usuarios/dni/{dni}`  
+
+📌 **GET** - Buscar usuario por Email:  
+`/usuarios/email/{email}`  
+
+📌 **POST** - Crear varios usuarios:  
+`/usuarios/multiples`  
+
+📌 **PUT** - Modificar usuario:  
+`/usuarios/{id}`  
+
+📌 **DELETE** - Eliminar usuario:  
+`/usuarios/{id}`  
+
+---
+
+### 🔹 Productos  
+
+📌 **GET** - Traer productos:  
+`/productos`  
+
+📌 **POST** - Crear producto:  
+`/productos`  
+
+📌 **PUT** - Modificar producto:  
+`/productos/{id}`  
+
+📌 **DELETE** - Eliminar producto:  
+`/productos/{id}`  
+
+---
+
+### 🔹 Categorías  
+
+📌 **GET** - Traer todas las categorías:  
+`/categorias`  
+
+📌 **GET** - Traer categoría por ID:  
+`/categorias/{id}`  
+
+📌 **POST** - Crear categoría:  
+`/categorias`  
+
+📌 **PUT** - Modificar categoría:  
+`/categorias/{id}`  
+
+📌 **DELETE** - Eliminar categoría:  
+`/categorias/{id}`  
