@@ -16,7 +16,7 @@ public class UsuarioServicioImp implements UsuarioServicio {
     // @Autowired
     public UsuarioServicioImp(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-    
+    }
 
     @Override
     public Optional<Usuario> findById(Long id) {
