@@ -700,3 +700,20 @@ truncate table USUARIO [90106-232]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "delete [*]* FROM PRODUCTO"; se esperaba "identifier"
 Syntax error in SQL statement "delete [*]* FROM PRODUCTO"; expected "identifier"; SQL statement:
 delete * FROM PRODUCTO [42001-232]
+2025-03-07 00:38:53.908686-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PRODUCTO \000d\000a[*]SELECT * FROM PRODUCTO"
+Syntax error in SQL statement "SELECT * FROM PRODUCTO \000d\000a[*]SELECT * FROM PRODUCTO"; SQL statement:
+SELECT * FROM PRODUCTO 
+SELECT * FROM PRODUCTO [42000-232]
+2025-03-07 00:39:15.974762-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT  FROM Usuario where ID [*]13"
+Syntax error in SQL statement "SELECT  FROM Usuario where ID [*]13"; SQL statement:
+SELECT  FROM Usuario where ID 13 [42000-232]
+2025-03-07 00:39:25.159405-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT  FROM Usuario where ID [*]13"
+Syntax error in SQL statement "SELECT  FROM Usuario where ID [*]13"; SQL statement:
+SELECT  FROM Usuario where ID 13 [42000-232]
+2025-03-07 00:39:25.813304-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT  FROM Usuario where ID [*]13"
+Syntax error in SQL statement "SELECT  FROM Usuario where ID [*]13"; SQL statement:
+SELECT  FROM Usuario where ID 13 [42000-232]

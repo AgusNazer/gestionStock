@@ -13,10 +13,10 @@ import com.gestionstock.demo.repository.UsuarioRepository;
 public class UsuarioServicioImp implements UsuarioServicio {
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
+    // @Autowired
     public UsuarioServicioImp(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-    }
+    
 
     @Override
     public Optional<Usuario> findById(Long id) {

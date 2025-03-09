@@ -12,7 +12,7 @@ import com.gestionstock.demo.model.Usuario;
     @Repository
     public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
-       // Buscar un usuario por DNI
+    // Buscar un usuario por DNI
     Optional<Usuario> findByDni(Long dni);
 
     // Buscar un usuario por email
