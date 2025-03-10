@@ -15,3 +15,4 @@ public class UsuarioDTO {
     private String rol; //admin, empleado, proveedor
 }
 
+// utuilzar el usuario dto para devoler solo los datos necessarios y no exponer datos que no queremos, como id or ejemplo., 

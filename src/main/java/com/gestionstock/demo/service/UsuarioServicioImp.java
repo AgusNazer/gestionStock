@@ -17,7 +17,8 @@ public class UsuarioServicioImp implements UsuarioServicio {
     public UsuarioServicioImp(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
-
+    //Importante
+    // Utiilzar el usuario dto para devoler solo los datos necessarios y no exponer datos que no queremos, como id or ejemplo.
     @Override
     public Optional<Usuario> findById(Long id) {
         return usuarioRepository.findById(id);
