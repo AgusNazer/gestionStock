@@ -1,5 +1,6 @@
 package com.gestionstock.demo.service;
 
+import com.gestionstock.demo.DTO.UsuarioDTO;
 import com.gestionstock.demo.model.Usuario;
 
 import java.util.List;
@@ -7,13 +8,13 @@ import java.util.Optional;
 
 public interface UsuarioServicio {
 
-    Optional<Usuario> findById(Long id);
+    Optional<UsuarioDTO> findById(Long id);
 
-    Optional<Usuario> findByDni(Long dni);
+    Optional<UsuarioDTO> findByDni(Long dni);
 
-    Optional<Usuario> findByEmail(String email);
+    Optional<UsuarioDTO> findByEmail(String email);
 
-    List<Usuario> findAll();
+    List<UsuarioDTO> findAll();
 
     Usuario save(Usuario usuario);
 

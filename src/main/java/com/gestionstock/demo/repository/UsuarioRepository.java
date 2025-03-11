@@ -5,7 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.gestionstock.demo.DTO.UsuarioDTO;
 import com.gestionstock.demo.model.Usuario;
+import java.util.List;
+
 
 
 
@@ -20,6 +23,8 @@ import com.gestionstock.demo.model.Usuario;
 
     // Verificar si un usuario con un DNI específico existe
     boolean existsByDni(Long dni);
+    
+    
 
     // Optional<Usuario> updateUsuario(Long id, Usuario usuario);
 

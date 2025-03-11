@@ -1,8 +1,8 @@
 package com.gestionstock.demo.controllers;
 
+import com.gestionstock.demo.DTO.UsuarioDTO;
 import com.gestionstock.demo.model.Usuario;
 import com.gestionstock.demo.service.UsuarioServicio;
-// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,62 +16,61 @@ public class UsuarioController {
 
     private final UsuarioServicio usuarioServicio;
 
-    // @Autowired
     public UsuarioController(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
     }
 
+    // ✅ Métodos que devuelven DTOs para no exponer datos sensibles
     @GetMapping("/{id}")
-    public Optional<Usuario> getUsuarioById(@PathVariable Long id) {
-        return usuarioServicio.findById(id);
+    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
+        return usuarioServicio.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/dni/{dni}")
-    public Optional<Usuario> getUsuarioByDni(@PathVariable Long dni) {
-        return usuarioServicio.findByDni(dni);
+    public ResponseEntity<UsuarioDTO> getUsuarioByDni(@PathVariable Long dni) {
+        return usuarioServicio.findByDni(dni)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/email/{email}")
-    public Optional<Usuario> getUsuarioByEmail(@PathVariable String email) {
-        return usuarioServicio.findByEmail(email);
+    public ResponseEntity<UsuarioDTO> getUsuarioByEmail(@PathVariable String email) {
+        return usuarioServicio.findByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return usuarioServicio.findAll();
+    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
+        List<UsuarioDTO> usuarios = usuarioServicio.findAll();
+        return ResponseEntity.ok(usuarios);
     }
 
-    // @PostMapping
-    // public ResponseEntity<String> createUsuario(@RequestBody Usuario usuario) {
-    //     usuarioServicio.save(usuario);
-    //     return new ResponseEntity<>("Usuario creado correctamente", HttpStatus.CREATED);  // Responde con mensaje y código de estado 201
-    // }
-
-    // ruta para crear multiples usuarios a la vez en postman, solo de prueba, borrarlo despues
+    // ✅ Métodos que aún necesitan `Usuario` porque trabajan con datos de la BD
     @PostMapping("/multiples")
-public ResponseEntity<List<Usuario>> createUsuarios(@RequestBody List<Usuario> usuarios) {
-    List<Usuario> savedUsuarios = usuarioServicio.saveAll(usuarios);
-    return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuarios);
-}
-@PutMapping("/{id}")
-public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-    // Verifica si el ID recibido en la URL coincide con el ID del objeto usuario
-    if (!id.equals(usuario.getId())) {
-        return ResponseEntity.badRequest().build(); // Error de solicitud, IDs no coinciden
+    public ResponseEntity<List<Usuario>> createUsuarios(@RequestBody List<Usuario> usuarios) {
+        List<Usuario> savedUsuarios = usuarioServicio.saveAll(usuarios);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuarios);
     }
 
-    // Llama al servicio para actualizar el usuario
-    Usuario usuarioActualizado = usuarioServicio.save(usuario);
-
-    return ResponseEntity.ok(usuarioActualizado); // Respuesta exitosa con el usuario actualizado
-}
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        if (!id.equals(usuario.getId())) {
+            return ResponseEntity.badRequest().build();
+        }
+        Usuario usuarioActualizado = usuarioServicio.save(usuario);
+        return ResponseEntity.ok(usuarioActualizado);
+    }
 
     @DeleteMapping("/{id}")
-    public void deleteUsuario(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         usuarioServicio.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
+
 
 //@RestController indica que esta clase manejará peticiones HTTP.
 // @RequestMapping("/usuarios") define la ruta base.
