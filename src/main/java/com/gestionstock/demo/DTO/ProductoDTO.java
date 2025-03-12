@@ -2,21 +2,17 @@ package com.gestionstock.demo.DTO;
 
 public class ProductoDTO {
 
-    private Long id;
+    // private Long id;
     private String nombre;
     private String descripcion;
     private Double precio;
-    private Integer stock;
-    private Long categoriaId; // relacionarlo con CategoriaDTO
-    // private String categoriaNombre;
 
-    public Long getId() {
-        return id;
+    public ProductoDTO(String nombre, String description, Double precio){
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -40,21 +36,5 @@ public class ProductoDTO {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public Long getCategoriaId() {
-        return categoriaId;
-    }
-
-    public void setCategoriaId(Long categoriaId) {
-        this.categoriaId = categoriaId;
     }
 }

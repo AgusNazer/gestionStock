@@ -1,5 +1,6 @@
 package com.gestionstock.demo.service;
 
+import com.gestionstock.demo.DTO.ProductoDTO;
 import com.gestionstock.demo.model.Categoria;
 import com.gestionstock.demo.model.Producto;
 import com.gestionstock.demo.repository.CategoriaRepository;
@@ -22,12 +23,19 @@ public class ProductoService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    public List<Producto> obtenerTodos() {
-        return productoRepository.findAll();
+        // Método para convertir de Producto a ProductoDTO
+    private ProductoDTO convertirAProductoDTO(Producto producto) {
+        return new ProductoDTO(producto.getNombre(), producto.getDescripcion(), producto.getPrecio());
     }
 
-    public Optional<Producto> obtenerPorId(Long id) {
-        return productoRepository.findById(id);
+    public List<ProductoDTO> obtenerTodos() {
+        return productoRepository.findAll().stream()
+        .map(this::convertirAProductoDTO)
+        .toList();
+    }
+
+    public Optional<ProductoDTO> obtenerPorId(Long id) {
+        return productoRepository.findById(id).map(this::convertirAProductoDTO);
     }
 
     public Producto guardarProducto(Producto producto) {

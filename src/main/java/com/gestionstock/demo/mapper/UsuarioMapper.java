@@ -13,9 +13,7 @@ public class UsuarioMapper {
             usuario.getNombre(),
             usuario.getApellido(),
             usuario.getEmail(),
-            usuario.getEdad(),
-            usuario.getEsAdmin(),
-            usuario.getRoles().stream().map(rol -> rol.getNombre()).collect(Collectors.toList()) //Convertir roles
+            usuario.getEdad()
         );
     }
 

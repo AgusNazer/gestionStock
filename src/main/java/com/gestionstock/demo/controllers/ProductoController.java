@@ -1,5 +1,6 @@
 package com.gestionstock.demo.controllers;
 
+import com.gestionstock.demo.DTO.ProductoDTO;
 import com.gestionstock.demo.model.Categoria;
 import com.gestionstock.demo.model.Producto;
 import com.gestionstock.demo.service.ProductoService;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/productos")
@@ -20,16 +22,17 @@ public class ProductoController {
 
     // Obtener todos los productos
     @GetMapping
-    public List<Producto> obtenerProductos() {
-        return productoService.obtenerTodos();
+public ResponseEntity<List<ProductoDTO>> obtenerTodosLosProductos() {
+        List<ProductoDTO> productos = productoService.obtenerTodos();
+        return ResponseEntity.ok(productos);
     }
 
     // Obtener un producto por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
-        return productoService.obtenerPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProductoDTO> obtenerProductoPorId(@PathVariable Long id) {
+        Optional<ProductoDTO> producto = productoService.obtenerPorId(id);
+        return producto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Crear un nuevo producto

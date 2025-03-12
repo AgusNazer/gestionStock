@@ -22,7 +22,7 @@ public class UsuarioServicioImp implements UsuarioServicio {
         this.usuarioRepository = usuarioRepository;
     }
 
-    // ✅ Métodos que devuelven DTOs
+    // Metodos que devuelven DTOs
     @Override
     public Optional<UsuarioDTO> findById(Long id) {
         return usuarioRepository.findById(id)
@@ -47,7 +47,7 @@ public class UsuarioServicioImp implements UsuarioServicio {
         return UsuarioMapper.toDTOList(usuarios); // Convertimos lista a DTOs
     }
     
-    // ✅ Métodos que usan la entidad Usuario porque trabajan con datos de la BD
+    // Metodos que usan la entidad Usuario porque trabajan con datos de la BD
     @Override
     public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);

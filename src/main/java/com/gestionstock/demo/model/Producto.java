@@ -20,7 +20,7 @@ public class Producto {
 
     private Double precio;
 
-    private Integer stock;
+    private Integer stock;// no incliuorlo en el DTO
     
     @JsonBackReference
     @ManyToOne
