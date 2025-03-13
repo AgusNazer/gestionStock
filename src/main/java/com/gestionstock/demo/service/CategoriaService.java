@@ -1,11 +1,14 @@
 package com.gestionstock.demo.service;
 
+import com.gestionstock.demo.DTO.CategoriaDTO;
+import com.gestionstock.demo.mapper.CategoriaMapper;
 import com.gestionstock.demo.model.Categoria;
 import com.gestionstock.demo.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService {
@@ -18,10 +21,25 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    // Obtener todas las categorías
-    public List<Categoria> obtenerTodas() {
-        return categoriaRepository.findAll();
-    }
+    // Obtener todas las categorías ( la entidad, no el DTO)
+    // public List<Categoria> obtenerTodas() {
+    //     return categoriaRepository.findAll();
+    // }
+
+    // convertir categoria a categoriaDTO
+ // Convertir Categoria a CategoriaDTO
+//     private CategoriaDTO convertirACategoriaDTO(Categoria categoria) {
+//     return new CategoriaDTO(
+//         categoria.getNombre()
+//     );
+// }
+
+// Obtener todas las categorías y devolver solo los datos necesarios
+public List<CategoriaDTO> obtenerTodas() {
+    List<Categoria> categorias = categoriaRepository.findAll();
+    return CategoriaMapper.toDTOList(categorias);
+}
+
 
     // Obtener una categoría por ID
     public Optional<Categoria> obtenerPorId(Long id) {
@@ -54,3 +72,6 @@ public class CategoriaService {
         return false;
     }
 }
+
+
+// AGREGAR DTOs a categorias

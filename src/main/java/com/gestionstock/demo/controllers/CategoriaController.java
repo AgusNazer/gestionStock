@@ -1,5 +1,6 @@
 package com.gestionstock.demo.controllers;
 
+import com.gestionstock.demo.DTO.CategoriaDTO;
 import com.gestionstock.demo.model.Categoria;
 import com.gestionstock.demo.service.CategoriaService;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class CategoriaController {
     // Obtener todas las categorías
     @GetMapping
     @Operation(summary = "Obtener todas las categorias", description = "Devuelve una lista de todos las categorias registradas")
-    public List<Categoria> obtenerCategorias() {
+    public List<CategoriaDTO> obtenerCategorias() {
         return categoriaService.obtenerTodas();
     }
 
