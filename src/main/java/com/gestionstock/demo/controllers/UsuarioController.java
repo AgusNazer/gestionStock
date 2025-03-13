@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+//Swagger
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/usuarios")
+//para swagger
+@Tag(name = "Usuarios", description = "Operaciones relacionadas con usuarios")
 public class UsuarioController {
 
     private final UsuarioServicio usuarioServicio;
@@ -20,8 +26,10 @@ public class UsuarioController {
         this.usuarioServicio = usuarioServicio;
     }
 
-    // ✅ Métodos que devuelven DTOs para no exponer datos sensibles
+    //Metodos que devuelven DTOs para no exponer datos sensibles
+
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener usuario por ID", description = "Devuelve un usuario basado en su ID")
     public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
         return usuarioServicio.findById(id)
                 .map(ResponseEntity::ok)
@@ -29,6 +37,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/dni/{dni}")
+    @Operation(summary = "Obtener usuario por DNI", description = "Devuelve un usuario basado en su número de DNI")
     public ResponseEntity<UsuarioDTO> getUsuarioByDni(@PathVariable Long dni) {
         return usuarioServicio.findByDni(dni)
                 .map(ResponseEntity::ok)
@@ -36,6 +45,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/email/{email}")
+    @Operation(summary = "Obtener usuario por email", description = "Devuelve un usuario basado en su dirección de email")
     public ResponseEntity<UsuarioDTO> getUsuarioByEmail(@PathVariable String email) {
         return usuarioServicio.findByEmail(email)
                 .map(ResponseEntity::ok)
@@ -43,12 +53,14 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @Operation(summary = "Obtener todos los usuarios", description = "Devuelve una lista de todos los usuarios registrados")
     public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
         List<UsuarioDTO> usuarios = usuarioServicio.findAll();
         return ResponseEntity.ok(usuarios);
     }
 
-    // ✅ Métodos que aún necesitan `Usuario` porque trabajan con datos de la BD
+    // Metodos que aún necesitan `Usuario` porque trabajan con datos de la BD
+    @Operation(summary = "Crear múltiples usuarios", description = "Registra una lista de usuarios en la base de datos")
     @PostMapping("/multiples")
     public ResponseEntity<List<Usuario>> createUsuarios(@RequestBody List<Usuario> usuarios) {
         List<Usuario> savedUsuarios = usuarioServicio.saveAll(usuarios);
@@ -56,6 +68,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente basado en su ID")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         if (!id.equals(usuario.getId())) {
             return ResponseEntity.badRequest().build();
@@ -65,22 +78,9 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar usuario", description = "Elimina un usuario basado en su ID")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         usuarioServicio.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
-
-
-//@RestController indica que esta clase manejará peticiones HTTP.
-// @RequestMapping("/usuarios") define la ruta base.
-// Métodos @GetMapping, @PostMapping, y @DeleteMapping exponen endpoints REST.
-
-// Resumen de hoy
-// Resumen
-//  UsuarioRepository: Interfaz que extiende JpaRepository, con métodos como findByDni().
-//  UsuarioService: Define los métodos de negocio.
-//  UsuarioServiceImpl: Implementa la lógica del servicio.
-//  UsuarioController: Expone una API REST para manejar Usuario.
-
-// Con esto, ya tienes una estructura limpia y escalable para manejar Usuario en tu sistema de gestión de stock. 🚀
