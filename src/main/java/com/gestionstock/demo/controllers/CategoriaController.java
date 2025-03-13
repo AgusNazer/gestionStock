@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Swagger
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/categorias")
+// swagger doc
+@Tag(name = "Categorias", description = "Operaciones relacionadas con categorias")
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
@@ -19,12 +25,14 @@ public class CategoriaController {
 
     // Obtener todas las categorías
     @GetMapping
+    @Operation(summary = "Obtener todas las categorias", description = "Devuelve una lista de todos las categorias registradas")
     public List<Categoria> obtenerCategorias() {
         return categoriaService.obtenerTodas();
     }
 
     // Obtener una categoría por ID
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener categoria por ID", description = "Devuelve una categoria basado en su ID")
     public ResponseEntity<Categoria> obtenerCategoriaPorId(@PathVariable Long id) {
         return categoriaService.obtenerPorId(id)
                 .map(ResponseEntity::ok)
@@ -33,12 +41,14 @@ public class CategoriaController {
 
     // Crear una nueva categoría
     @PostMapping
+    @Operation(summary = "Crea una categoria", description = "Registra una categoria en la base de datos")
     public Categoria crearCategoria(@RequestBody Categoria categoria) {
         return categoriaService.guardarCategoria(categoria);
     }
 
     // Actualizar una categoría
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar categoria", description = "Actualiza una categoria existente basada en su ID")
     public ResponseEntity<Categoria> actualizarCategoria(@PathVariable Long id, @RequestBody Categoria categoria) {
         return categoriaService.actualizarCategoria(id, categoria)
                 .map(ResponseEntity::ok)
@@ -47,6 +57,7 @@ public class CategoriaController {
 
     // Eliminar una categoría
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar categoria", description = "Elimina una categoria basada en su ID")
     public ResponseEntity<Void> eliminarCategoria(@PathVariable Long id) {
         if (categoriaService.eliminarCategoria(id)) {
             return ResponseEntity.noContent().build();
