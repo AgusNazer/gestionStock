@@ -1,6 +1,7 @@
 package com.gestionstock.demo.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,5 +41,12 @@ public class Usuario {
         joinColumns = @JoinColumn(name = "USUARIO_ID"),
         inverseJoinColumns = @JoinColumn(name = "ROL_ID")
     )
-    private Set<Rol> roles;
+    // private Set<Rol> roles = new HashSet<>();
+    private List<Rol> roles;
+
+    // Método para agregar un rol al usuario
+    // public void addRol(Rol rol) {
+    //     this.roles.add(rol);
+    //     rol.getUsuarios().add(this); 
+    // }
 }

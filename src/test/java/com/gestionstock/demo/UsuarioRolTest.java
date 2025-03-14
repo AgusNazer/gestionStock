@@ -5,8 +5,10 @@ import com.gestionstock.demo.model.Usuario;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Set;
-import java.util.HashSet;
+// import java.util.Set; // estoy usando List
+import java.util.ArrayList;
+// import java.util.HashSet; // estoy usando List
+import java.util.List;
 
 class UsuarioRolTest {
 
@@ -23,11 +25,12 @@ class UsuarioRolTest {
         rol2.setNombre("ADMIN"); // Mismo nombre que rol1
 
         // Agregar roles al usuario
-        Set<Rol> roles = new HashSet<>();
+        List<Rol> roles = new ArrayList<>();
         roles.add(rol1);
         roles.add(rol2); // Debería ignorar este porque Set no permite duplicados
         
         usuario.setRoles(roles);
+        // usuario.setRoles(null);
 
      // Verificar que solo hay un rol
     System.out.println("Roles del usuario: " + usuario.getRoles());
