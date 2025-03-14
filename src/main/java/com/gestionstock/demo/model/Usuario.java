@@ -2,6 +2,7 @@ package com.gestionstock.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -39,5 +40,5 @@ public class Usuario {
         joinColumns = @JoinColumn(name = "USUARIO_ID"),
         inverseJoinColumns = @JoinColumn(name = "ROL_ID")
     )
-    private List<Rol> roles = new ArrayList<>();
+    private Set<Rol> roles;
 }
