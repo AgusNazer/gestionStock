@@ -6,7 +6,7 @@ Permite controlar el **ingreso y egreso de mercadería**, llevar un registro det
 - **Vendedores**  
 - **Compradores**  
 
-La estructura es adaptable a distintos rubros, ya que aún no se ha definido un tipo específico de producto.  
+La estructura es adaptable a distintos rubros, en este caso se utilizan productos relacionados a computación y accesorios. 
 
 ## 🚀 Endpoints Disponibles  
 
