@@ -12,6 +12,7 @@ import java.util.List;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/categorias")
 // swagger doc
