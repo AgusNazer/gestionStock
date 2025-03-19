@@ -92,14 +92,31 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente basado en su ID")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        if (!id.equals(usuario.getId())) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        try {
+            // Validación para asegurarse de que el DNI no sea nulo
+            if (usuarioDTO.getDni() == null) {
+                return ResponseEntity.badRequest().build();
+            }
+    
+            // Crear un objeto Usuario con los datos del DTO
+            Usuario usuario = new Usuario();
+            usuario.setId(id);
+            usuario.setNombre(usuarioDTO.getNombre());
+            usuario.setApellido(usuarioDTO.getApellido());
+            usuario.setEmail(usuarioDTO.getEmail());
+            usuario.setEdad(usuarioDTO.getEdad());
+            usuario.setDni(usuarioDTO.getDni());
+    
+            // Guardamos el usuario actualizado
+            Usuario usuarioActualizado = usuarioServicio.save(usuario);
+            return ResponseEntity.ok(usuarioActualizado);
+        } catch (Exception e) {
+            // Log de excepción
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        Usuario usuarioActualizado = usuarioServicio.save(usuario);
-        return ResponseEntity.ok(usuarioActualizado);
     }
-
+    
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar usuario", description = "Elimina un usuario basado en su ID")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
