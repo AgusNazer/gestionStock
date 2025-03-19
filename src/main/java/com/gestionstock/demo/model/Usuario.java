@@ -1,9 +1,7 @@
 package com.gestionstock.demo.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -25,26 +23,35 @@ public class Usuario {
     private Integer edad;
 
     @Column(unique = true, nullable = false, length = 10)
-    private long dni;
+    private Long dni;
 
     private Boolean esAdmin;
     @JsonManagedReference
 
-    // un usuario puede registrar varios movimientos de stock
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MovimientoStock> movimientos = new ArrayList<>();
 
-    // cada usuario puede tener varios roles / un rol puede ser asignado a varios usuarios
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "USUARIO_ROL",
         joinColumns = @JoinColumn(name = "USUARIO_ID"),
         inverseJoinColumns = @JoinColumn(name = "ROL_ID")
     )
-    // private Set<Rol> roles = new HashSet<>();
     private List<Rol> roles;
 
-    // Método para agregar un rol al usuario
+    // Constructor con los parámetros necesarios para el DTO
+    public Usuario(String nombre, String apellido, String email, Integer edad, Long dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.edad = edad;
+        this.dni = dni;
+    }
+
+    // Constructor sin parámetros (necesario para JPA)
+    public Usuario() {}
+
+    // Los métodos addRol() pueden ser necesarios si decides utilizarlos para manejar roles de usuario
     // public void addRol(Rol rol) {
     //     this.roles.add(rol);
     //     rol.getUsuarios().add(this); 

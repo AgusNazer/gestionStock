@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 //Swagger
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:5173")// mi frontend
+@CrossOrigin(origins = "http://localhost:5173") // mi frontend
 @RestController
 @RequestMapping("/usuarios")
 // swagger doc
@@ -27,7 +29,7 @@ public class UsuarioController {
         this.usuarioServicio = usuarioServicio;
     }
 
-    //Metodos que devuelven DTOs para no exponer datos sensibles
+    // Metodos que devuelven DTOs para no exponer datos sensibles
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener usuario por ID", description = "Devuelve un usuario basado en su ID")
@@ -61,12 +63,32 @@ public class UsuarioController {
     }
 
     // Metodos que aún necesitan `Usuario` porque trabajan con datos de la BD
-    @Operation(summary = "Crear múltiples usuarios", description = "Registra una lista de usuarios en la base de datos")
+    // Método para crear múltiples usuarios
     @PostMapping("/multiples")
-    public ResponseEntity<List<Usuario>> createUsuarios(@RequestBody List<Usuario> usuarios) {
+    @Operation(summary = "Crear múltiples usuarios", description = "Registra una lista de usuarios en la base de datos")
+    public ResponseEntity<List<UsuarioDTO>> createUsuarios(@RequestBody @Valid List<UsuarioDTO> usuariosDTO) {
+        // Convertir los DTOs a entidades Usuario
+        List<Usuario> usuarios = usuariosDTO.stream()
+                .map(dto -> new Usuario(dto.getNombre(), dto.getApellido(), dto.getEmail(), dto.getEdad(), dto.getDni()))
+                .collect(Collectors.toList());
+    
+        // Guardar los usuarios en la base de datos
         List<Usuario> savedUsuarios = usuarioServicio.saveAll(usuarios);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuarios);
+    
+        // Convertir los usuarios guardados a DTOs (sin enviar información sensible)
+        List<UsuarioDTO> savedUsuariosDTO = savedUsuarios.stream()
+                .map(usuario -> new UsuarioDTO(
+                        usuario.getNombre(),
+                        usuario.getApellido(),
+                        usuario.getEmail(),
+                        usuario.getEdad(),
+                        usuario.getDni() // <-- Se incluye dni
+                ))
+                .collect(Collectors.toList());
+    
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuariosDTO);
     }
+    
 
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente basado en su ID")
@@ -84,4 +106,5 @@ public class UsuarioController {
         usuarioServicio.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }

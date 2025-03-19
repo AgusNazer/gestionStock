@@ -2,19 +2,25 @@ package com.gestionstock.demo.DTO;
 
 import java.util.List;
 
+import jakarta.validation.constraints.NotNull;
+
 public class UsuarioDTO {
     private String nombre;
     private String apellido;
     private String email;
     private Integer edad;
+    @NotNull(message = "El DNI no puede ser nulo")
+    private Long dni;
     // private Boolean esAdmin;
     // private List<String> roles; // Si un usuario tiene múltiples roles
 
-    public UsuarioDTO(String nombre, String apellido, String email, Integer edad) {
+    public UsuarioDTO(String nombre, String apellido, String email, Integer edad, Long dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.edad = edad;
+        this.dni = dni;
+;
         // this.esAdmin = esAdmin;
         // this.roles = roles;
     }
@@ -31,6 +37,9 @@ public class UsuarioDTO {
 
     public Integer getEdad() { return edad; }
     public void setEdad(Integer edad) { this.edad = edad; }
+
+    public Long getDni() { return dni; }
+    public void setDni(Long dni) { this.dni = dni; }
 
     // public Boolean getEsAdmin() { return esAdmin; }
     // public void setEsAdmin(Boolean esAdmin) { this.esAdmin = esAdmin; }
