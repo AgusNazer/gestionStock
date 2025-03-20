@@ -5,7 +5,8 @@ Permite controlar el **ingreso y egreso de mercadería**, llevar un registro det
 - **Administradores**  
 - **Vendedores**  
 - **Compradores**  
-
+El projecto sigue en desarrollo, aun le faltan algunas cuestiones para poder manejar las distintas cuentas de administrador,vendedor, y comprador, ya que tienen distintos niveles de privilegio en cuanto funcionalidades.
+Por ejemplo, el unico que podria crear categorias y productos seria el administrador. Por el momento el usuario puede ingresar a todas las funcionalidades.
 La estructura es adaptable a distintos rubros, en este caso se utilizan productos relacionados a computación y accesorios. 
 
 ## 🚀 Endpoints Disponibles  
