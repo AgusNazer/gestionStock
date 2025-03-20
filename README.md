@@ -9,6 +9,7 @@ Permite controlar el **ingreso y egreso de mercadería**, llevar un registro det
 La estructura es adaptable a distintos rubros, en este caso se utilizan productos relacionados a computación y accesorios. 
 
 ## 🚀 Endpoints Disponibles  
+Hay ejemplos de las solicitudes post y put aqui en el readme, se pueden probar tanto en postman como en swagger. 
 
 ### 🔹 Usuarios  
 
@@ -26,9 +27,28 @@ La estructura es adaptable a distintos rubros, en este caso se utilizan producto
 
 📌 **POST** - Crear varios usuarios:  
 `/usuarios/multiples`  
+EJEMPLO DE SOLICITUD(BODY)
+[{
+  "nombre": "Fernanda",
+  "apellido": "perez",
+  "email": "fernanda.garcia@example.com",
+  "edad": 32,
+  "dni": 12123456
+}]
+
 
 📌 **PUT** - Modificar usuario:  
 `/usuarios/{id}`  
+
+EJEMPLO DE SOLICITUD(BODY)
+   {
+    "nombre": "Alfredo",
+    "apellido": "Lofonso",
+    "email": "diefgo.ramirez@example.com",
+    "edad": 38,
+    "dni": 123456  
+  }
+
 
 📌 **DELETE** - Eliminar usuario:  
 `/usuarios/{id}`  
@@ -41,10 +61,30 @@ La estructura es adaptable a distintos rubros, en este caso se utilizan producto
 `/productos`  
 
 📌 **POST** - Crear producto:  
-`/productos`  
+`/productos`
+EJEMPLO DE SOLICITUD(BODY)
+{
+  "nombre": "Teclado genérico",
+  "descripcion": "Teclado mecánico generico K8 bluetooth",
+  "stock": 6,
+  "categoria": {
+    "id": 41
+  }
+}
 
 📌 **PUT** - Modificar producto:  
 `/productos/{id}`  
+EJEMPLO DE SOLICITUD(BODY)
+{
+  "id": 12,
+  "nombre": "Teclado Keychron",
+  "descripcion": "Teclado mecánico Keychron K8 Pro",
+  "precio": 280,
+  "stock": 25,
+  "categoria": {
+    "id": 41
+  }
+}
 
 📌 **DELETE** - Eliminar producto:  
 `/productos/{id}`  
@@ -61,9 +101,19 @@ La estructura es adaptable a distintos rubros, en este caso se utilizan producto
 
 📌 **POST** - Crear categoría:  
 `/categorias`  
+EJEMPLO DE SOLICITUD(BODY)
+{
+  "nombre": "Electrónica"
+}
+
 
 📌 **PUT** - Modificar categoría:  
 `/categorias/{id}`  
+EJEMPLO DE SOLICITUD(BODY)
+{
+  "nombre": "Accesorios de Computación"
+}
+
 
 📌 **DELETE** - Eliminar categoría:  
 `/categorias/{id}`  
