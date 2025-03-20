@@ -1,10 +1,16 @@
 package com.gestionstock.demo.DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ProductoDTO {
 
     // private Long id;
+    @Schema(example = "Teclado Keychron")
     private String nombre;
+    @Schema(example = "Teclado mecánico Keychron K8 Pro")
     private String descripcion;
+
+    @Schema(example = "280")
     private Double precio;
 
     public ProductoDTO(String nombre, String description, Double precio){
